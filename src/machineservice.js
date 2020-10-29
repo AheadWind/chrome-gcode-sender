@@ -166,6 +166,13 @@ app.service('machineService', function($rootScope, $timeout, warningService) {
       }
     }
 
+    // ************************************************************************************
+    // Write to server here
+    // send to api.mqttPort
+    // send api.userID, message, isSend
+    // ************************************************************************************
+
+
     // Limit our history (it could be megs of data when processing a file).
     while (api.logs.length > CONSOLE_MAX_SCROLLBACK) {
       api.logs.shift();
@@ -256,6 +263,7 @@ app.service('machineService', function($rootScope, $timeout, warningService) {
 
   // Return the "API" for this service.
   var api = {
+    // gcode sender stuff
     isBusy:false,
     isConnected:false,
     isRelativeMode: false,
@@ -266,7 +274,10 @@ app.service('machineService', function($rootScope, $timeout, warningService) {
     connect:connect,
     disconnect:disconnect,
     enqueueCommands:enqueueCommands,
-    emergencyStop:emergencyStop
+    emergencyStop:emergencyStop,
+    // mqtt server stuff
+    userID:null,
+    mqttPort:null
   };
   return api;
 });
